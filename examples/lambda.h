@@ -37,6 +37,9 @@ void LuaBinder_Lambda()
     				 "end                                   \n"
     				 "callbackTest1(callback, 20)           \n"
     				 "callbackTest2(callback)               \n");
+
+
+    g_lua["callback"](1, 1, 2);
 }
 
 

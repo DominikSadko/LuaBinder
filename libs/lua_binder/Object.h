@@ -70,6 +70,9 @@ class Object
 
         ~Object()  { Lua::unref(L, m_ref); }
 
+        static bool isRemoved(Lua::Object* object) { return object->isRemoved(); }
+        bool isRemoved() { return !(*this)["__userdata"].get<bool>(); }
+
         /////////////////////////////////////////////////////////////////
 
         lua_State* state() const { return L; }
@@ -90,6 +93,9 @@ class Object
         operator bool()  const { return (m_ref != -1); }
         bool operator!() const { return (m_ref == -1); }
 
+        template <typename... Args>
+        void operator()(const Args&... args) { return call(args...); }
+
         template <typename T>
         Object& operator=(Object& object) { return object; }
 
@@ -99,7 +105,6 @@ class Object
 
         template <typename T>
         bool operator==(T value) { return (get<T>() == value); }
-
         bool operator==(const char* value) { return strcmp(get<const char*>(), value) == 0; }
         bool operator==(char* value) { return strcmp(get<char*>(), value) == 0; }
 

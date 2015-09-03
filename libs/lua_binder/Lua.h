@@ -181,8 +181,19 @@ class State
             { return staticFunction(std::function<Ret*(Args...)>( [](Args... args){ return new Ret(args...); }), name); }
 
         template <typename T>
-        Binder<void, void, T*>* destructor(const std::string& name)
-            { return staticFunction(std::function<void(T*)>( [] (T* in) { delete in; } ), name); }
+        Binder<void, void, Lua::Object*>* destructor(const std::string& name)
+            { return staticFunction(std::function<void(Lua::Object*)>( [] (Lua::Object* object)
+            		{
+            			if((*object).getType() == LuaType::Table)
+            			{
+            				delete (*object)["__userdata"].get<T*>();
+            				(*object).set("__userdata", nullptr);
+            			}
+            			else
+            				delete (*object).get<T*>();
+
+            			delete object;
+            		} ), name); }
 
 
 

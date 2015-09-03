@@ -21,7 +21,7 @@ class Shared
             m_ref = 0;
         }
 
-        bool isRemoved() const { return !m_ref; }
+        bool removedRef() const { return !m_ref; }
         int32_t getRef() const { return m_ref; }
         void setRef(int32_t ref, lua_State* state)
         {
