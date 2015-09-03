@@ -16,7 +16,7 @@ int32_t main(void)
 {
     g_lua.init();
     g_lua.loadFile("test.lua");
-    g_lua["foo"].call();
+    g_lua["foo"](3.14);
 
     return EXIT_SUCCESS;
 }
