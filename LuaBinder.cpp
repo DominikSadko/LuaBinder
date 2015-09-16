@@ -24,6 +24,7 @@
 #include "examples/shared_classes.h"
 #include "examples/parser.h"
 #include "examples/sandbox.h"
+#include "examples/stress_test.h"
 
 
 
@@ -39,6 +40,7 @@ int32_t main(void)
 	LuaBinder_SharedClasses();
 	LuaBinder_Parser();
 	LuaBinder_SandBox();
+	LuaBinder_StressTest();
 
 	ASSERT_TOP(g_lua.state());
 

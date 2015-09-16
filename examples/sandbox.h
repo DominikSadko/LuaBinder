@@ -1,7 +1,6 @@
 /*
  * sandbox.h
  *
- *  Created on: 26 sie 2015
  *      Author: Dominik Sadko
  */
 

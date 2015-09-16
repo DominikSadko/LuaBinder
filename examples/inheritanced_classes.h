@@ -1,7 +1,6 @@
 /*
  * shared_classes.h
  *
- *  Created on: 25 sie 2015
  *      Author: Dominik Sadko
  */
 
